@@ -5,7 +5,7 @@ Este repositório é dedicado a documentar minha jornada durante a graduação n
 #### 💻 Algumas tecnologias aprendidas até aqui:
 
 
-<p align="left">
+<p align="CENTER">
   <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40" style="margin-right: 10px;"/>
   </a>
