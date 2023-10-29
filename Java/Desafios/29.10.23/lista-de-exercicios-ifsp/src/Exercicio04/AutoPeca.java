@@ -34,7 +34,7 @@ public class AutoPeca {
         Integer qtdPeca02 = leitor03.nextInt();
 
         System.out.println("\n\n");
-        
+
         Double total = (valorUnitario * qtdPeca01 + valorUnitario02 * qtdPeca02) * (porcetagem/100 + 1);
 
         System.out.println("Total gasto: %.2f".formatted(total));
