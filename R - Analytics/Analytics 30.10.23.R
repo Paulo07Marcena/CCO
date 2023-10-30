@@ -68,8 +68,8 @@ idade <- round(rnorm(n,35,5),0)
 set.seed(123)
 idade <- round(rnorm(n,35,5),0)
 
-set.seed(123)
-sexo <- rbinom(n,1,.85)
+
+sexo <- rbinom(n,1,.5)
 sexo <- factor(sexo,
                  levels = c(0,1),
                  labels = c("Homem","Mulher"),
@@ -80,3 +80,27 @@ sexo <- factor(sexo,
 renda <- round(rnorm(n,2000.00, 250),2)
 
 dados <- data.frame(sexo, renda, idade)
+
+library(ggplot2)
+
+
+histograma_mulheres <- ggplot(subset(dados, sexo == "Mulher"), aes(x = renda)) +
+  geom_histogram(fill = "pink", color = "black", bins = 20) +
+  labs(title = "Histograma da Renda para Mulheres",
+       x = "Renda",
+       y = "Frequência") +
+  theme_minimal()
+
+print(histograma_mulheres)
+
+
+histograma_homem <- ggplot(subset(dados, sexo == "Homem"), aes(x = renda)) +
+  geom_histogram(fill = "blue", color = "black", bins = 20) +
+  labs(title = "Histograma da Renda para Homens",
+       x = "Renda",
+       y = "Frequência") +
+  theme_minimal()
+
+print(histograma_homem)
+
+
