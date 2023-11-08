@@ -1,4 +1,6 @@
 library(readxl)
+library(ggplot2)
+
 dados <- read_excel("C:/Users/mathe/OneDrive/Ambiente de Trabalho/Reis/Faculdade/Calculo computacional/08.11.2023/Base de dados loan .xlsx", 
      col_types = c("text", "text", "text", 
          "numeric", "text", "text", "numeric", 
@@ -25,7 +27,6 @@ grafico_solteiros <- ggplot(dados_solteiros, aes(x = Casado, fill = Emprestimo))
        y = "Empréstimos Aprovados") +
   scale_fill_manual(values = c("Y" = "green", "N" = "red")) 
 
-print(grafico_solteiros)
 
 casados_aprovados <- table(dados_casados$Emprestimo)
 solteiros_aprovados <- table(dados_solteiros$Emprestimo)
@@ -45,7 +46,33 @@ grafico <- ggplot(mediaDeRenda, aes(x = Categoria, y = MediaRenda, fill = Catego
        y = "Média de Renda") +
   theme_minimal()
 
+graduado <- dados[dados$Grau == "Graduate" & !is.na(dados$Emprestimo), ]
 
+ggplot(graduado, aes(x = Grau, fill = Emprestimo)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Relação entre aprovação de empréstimo e graduados",
+       x = "Graduados",
+       y = "Empréstimos Aprovados") +
+  scale_fill_manual(values = c("Y" = "green", "N" = "red"))
 
+nao_graduado <- dados[dados$Grau == "Not Graduate" & !is.na(dados$Emprestimo), ]
 
+ggplot(nao_graduado, aes(x = Grau, fill = Emprestimo)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Relação entre aprovação de empréstimo e não graduados",
+       x = "Não Graduados",
+       y = "Empréstimos Aprovados") +
+  scale_fill_manual(values = c("Y" = "green", "N" = "red"))
+dadosTeste <- dados[dados$Renda < 6000, ]
+qtdFilho <- table(dadosTeste$Dependents)
+dependents0 <- dadosTeste[dadosTeste$Dependents == 0,]
+dependents1 <- dadosTeste[dadosTeste$Dependents == 1,]
+dependents2 <- dadosTeste[dadosTeste$Dependents == 2,]
+dependents3 <- dadosTeste[dadosTeste$Dependents == 3,]
 
+par(mfrow=c(2,2), mar=c(4, 4, 2, 1))
+
+plot(dependents0$Renda, dependents0$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
+plot(dependents1$Renda, dependents1$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
+plot(dependents2$Renda, dependents2$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
+plot(dependents3$Renda, dependents3$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
