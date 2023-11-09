@@ -1,5 +1,6 @@
 library(readxl)
 library(ggplot2)
+par_default <- par(no.readonly = TRUE)
 
 dados <- read_excel("C:/Users/mathe/OneDrive/Ambiente de Trabalho/Reis/Faculdade/Calculo computacional/08.11.2023/Base de dados loan .xlsx", 
      col_types = c("text", "text", "text", 
@@ -76,3 +77,10 @@ plot(dependents0$Renda, dependents0$Dependents, pch=20, xlab = "Renda", ylab = "
 plot(dependents1$Renda, dependents1$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
 plot(dependents2$Renda, dependents2$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
 plot(dependents3$Renda, dependents3$Dependents, pch=20, xlab = "Renda", ylab = "Dependentes")
+
+par(par_default)
+
+valores <- c(3308.41, 3530.43, 3611.01, 3896.7)
+nomes_colunas <- c("0", "1", "2", "+3")
+dados <- data.frame(Valores = valores, Nomes = nomes_colunas)
+barplot(dados$Valores, names.arg = dados$Nomes, col = "skyblue", main = "Gráfico de Barras", xlab = "Colunas", ylab = "Valores")
