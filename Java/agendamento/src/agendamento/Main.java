@@ -34,14 +34,13 @@ public class Main {
 
 
         ExibirMensagemTask tarefa1 = new ExibirMensagemTask(msg, 1000, 5000);
+        ExibirMensagemTask tarefa2 = new ExibirMensagemTask("Teste", 1000,2000);
 
         agendador.schedule(tarefa1, tarefa1.getDelay(), tarefa1.getPeriodo());
-
-
-
-
-
+        agendador.schedule(tarefa2, tarefa2.getDelay(), tarefa2.getPeriodo());
+        
         leitor.nextLine();
+        agendador.cancel();
 
 
 
